@@ -9,6 +9,8 @@
 
 #include <string>
 
+enum FruitType { Nut, Berry, Citrus, Generic };
+
 class IFruit {
    public:
     IFruit() = default;
@@ -17,6 +19,7 @@ class IFruit {
     [[nodiscard]] virtual unsigned int getVitamins() const = 0;
     [[nodiscard]] virtual std::string getName() const = 0;
     [[nodiscard]] virtual bool isPeeled() const = 0;
+    [[nodiscard]] virtual FruitType getType() const = 0;
     virtual void peel() = 0;
 };
 

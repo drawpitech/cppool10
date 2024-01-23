@@ -2,14 +2,14 @@
 ** EPITECH PROJECT, 2024
 ** ppool10
 ** File description:
-** Almond
+** Coconut
 */
 
 #pragma once
 
 #include "ANut.hpp"
 
-class Almond : public ANut {
+class Coconut : public ANut {
    public:
-    Almond() : ANut(2 , "almond") {}
+    Coconut() : ANut(4, "coconut") {}
 };

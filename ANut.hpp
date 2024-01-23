@@ -12,5 +12,5 @@
 class ANut : public AFruit {
    public:
     ANut(unsigned int vitamins, std::string name)
-        : AFruit(vitamins, std::move(name), false) {}
+        : AFruit(vitamins, std::move(name), false, Nut) {}
 };
