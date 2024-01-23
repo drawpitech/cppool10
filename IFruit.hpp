@@ -19,7 +19,6 @@ class IFruit {
     [[nodiscard]] virtual unsigned int getVitamins() const = 0;
     [[nodiscard]] virtual std::string getName() const = 0;
     [[nodiscard]] virtual bool isPeeled() const = 0;
-    [[nodiscard]] virtual FruitType getType() const = 0;
     virtual void peel() = 0;
     [[nodiscard]] virtual IFruit *clone() const = 0;
 };

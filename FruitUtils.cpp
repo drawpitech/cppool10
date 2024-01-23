@@ -8,7 +8,20 @@
 #include "FruitUtils.hpp"
 
 #include <cmath>
-#include <span>
+
+#include "ABerry.hpp"
+#include "ACitrus.hpp"
+#include "ANut.hpp"
+
+static FruitType deduce_type(IFruit *fruit) {
+    if (dynamic_cast<ACitrus *>(fruit) != nullptr)
+        return Citrus;
+    if (dynamic_cast<ABerry *>(fruit) != nullptr)
+        return Berry;
+    if (dynamic_cast<ANut *>(fruit) != nullptr)
+        return Nut;
+    return Generic;
+}
 
 void FruitUtils::sort(
     FruitBox &unsorted, FruitBox &lemon, FruitBox &citrus, FruitBox &berry) {
@@ -17,7 +30,8 @@ void FruitUtils::sort(
     for (size_t i = 0; i < size; i++) {
         IFruit *fruit = unsorted.popFruit();
         bool res = false;
-        switch (fruit->getType()) {
+
+        switch (deduce_type(fruit)) {
             case Citrus:
                 res = (fruit->getName() == "lemon") ? lemon.pushFruit(fruit)
                                                     : citrus.pushFruit(fruit);

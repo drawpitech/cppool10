@@ -12,5 +12,5 @@
 class ACitrus : public AFruit {
    public:
     ACitrus(unsigned int vitamins, std::string name)
-        : AFruit(vitamins, std::move(name), false, Citrus) {}
+        : AFruit(vitamins, std::move(name), false) {}
 };
