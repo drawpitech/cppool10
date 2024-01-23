@@ -28,6 +28,8 @@ class AFruit : public virtual IFruit {
 
     void peel() override { _peeled = true; }
 
+    [[nodiscard]] IFruit *clone() const override { return new AFruit(*this); }
+
    protected:
     unsigned int _vitamins;
     std::string _name;
