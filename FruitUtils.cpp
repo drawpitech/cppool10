@@ -7,6 +7,7 @@
 
 #include "FruitUtils.hpp"
 
+#include <cmath>
 #include <span>
 
 void FruitUtils::sort(
@@ -32,4 +33,21 @@ void FruitUtils::sort(
         if (!res)
             unsorted.pushFruit(fruit);
     }
+}
+
+FruitBox **FruitUtils::pack(IFruit **fruits, unsigned int boxSize) {
+    size_t nb_fruits = 0;
+    while (fruits[nb_fruits] != nullptr)
+        nb_fruits++;
+
+    size_t nb_box = std::ceil(nb_fruits / boxSize);
+    auto **res = new FruitBox *[nb_box + 1];
+
+    for (size_t i = 0; i < nb_fruits; i++) {
+        if (i % boxSize == 0)
+            res[i / boxSize] = new FruitBox(boxSize);
+        res[i / boxSize]->pushFruit(fruits[i]);
+    }
+    res[nb_box] = nullptr;
+    return res;
 }
