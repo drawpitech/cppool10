@@ -34,10 +34,9 @@ void FruitUtils::sort(
 
         switch (deduce_type(fruit)) {
             case Citrus:
-                if (dynamic_cast<Lemon *>(fruit) != nullptr)
-                    lemon.pushFruit(fruit);
-                else
-                    citrus.pushFruit(fruit);
+                res = (dynamic_cast<Lemon *>(fruit) == nullptr)
+                          ? citrus.pushFruit(fruit)
+                          : lemon.pushFruit(fruit);
                 break;
             case Berry:
                 res = berry.pushFruit(fruit);
