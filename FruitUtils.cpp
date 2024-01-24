@@ -12,6 +12,7 @@
 #include "ABerry.hpp"
 #include "ACitrus.hpp"
 #include "ANut.hpp"
+#include "Lemon.hpp"
 
 static FruitType deduce_type(IFruit *fruit) {
     if (dynamic_cast<ACitrus *>(fruit) != nullptr)
@@ -33,8 +34,10 @@ void FruitUtils::sort(
 
         switch (deduce_type(fruit)) {
             case Citrus:
-                res = (fruit->getName() == "lemon") ? lemon.pushFruit(fruit)
-                                                    : citrus.pushFruit(fruit);
+                if (dynamic_cast<Lemon *>(fruit) != nullptr)
+                    lemon.pushFruit(fruit);
+                else
+                    citrus.pushFruit(fruit);
                 break;
             case Berry:
                 res = berry.pushFruit(fruit);
@@ -54,7 +57,7 @@ FruitBox **FruitUtils::pack(IFruit **fruits, unsigned int boxSize) {
     while (fruits[nb_fruits] != nullptr)
         nb_fruits++;
 
-    size_t nb_box = std::ceil(nb_fruits / boxSize);
+    size_t nb_box = std::ceil((double)nb_fruits / (double)boxSize);
     auto **res = new FruitBox *[nb_box + 1];
 
     for (size_t i = 0; i < nb_fruits; i++) {
